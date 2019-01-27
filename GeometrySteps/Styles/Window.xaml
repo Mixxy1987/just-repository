@@ -1,0 +1,10 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:dialogs="clr-namespace:GeometrySteps.Dialogs">
+    <Style TargetType="Window" x:Key="BaseWindowStyle">
+        <!--<Setter Property="Icon" Value="../Pictures/App.ico"/>-->
+    </Style>
+
+    <Style TargetType="dialogs:WindowBase" BasedOn="{StaticResource BaseWindowStyle}"/>
+
+</ResourceDictionary>

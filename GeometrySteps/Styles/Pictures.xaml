@@ -1,0 +1,9 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <BitmapImage UriSource="Pictures\Error.png" x:Key="ErrorImage"/>
+    <BitmapImage UriSource="Pictures\AddUser.png" x:Key="AddUserImage"/>
+    <BitmapImage UriSource="Pictures\Admin.png" x:Key="AdminImage"/>
+    <BitmapImage UriSource="Pictures\edit.png" x:Key="EditImage"/>
+    <BitmapImage UriSource="Pictures\remove.png" x:Key="RemoveImage"/>
+    <BitmapImage UriSource="Pictures\checked.png" x:Key="CheckedImage"/>
+</ResourceDictionary>

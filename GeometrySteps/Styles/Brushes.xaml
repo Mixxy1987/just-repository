@@ -1,0 +1,11 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <SolidColorBrush x:Key="HeaderBG" Color="#455A64" />
+    <SolidColorBrush x:Key="UserListBgBrush" Color="#1A455A64" />
+    <SolidColorBrush x:Key="AdminPaneBG" Color="#E6E6E6" />
+    <SolidColorBrush x:Key="LinkMouseOverBrush" Color="#3399CC" />
+    <SolidColorBrush x:Key="TextBoxBorderBrush" Color="#BFBFBF" />
+    <SolidColorBrush x:Key="TextBoxDisabledBackground" Color="#F4F4F4" />
+    <SolidColorBrush x:Key="CheckBoxBorderBrush" Color="#BABABA" />
+    <SolidColorBrush x:Key="CheckBoxDisableBrush" Color="#ECECEC" />
+</ResourceDictionary>

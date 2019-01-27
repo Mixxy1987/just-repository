@@ -1,0 +1,83 @@
+﻿<Window x:Class="GeometrySteps.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:templateSelectors="clr-namespace:GeometrySteps.TemplateSelectors"
+        xmlns:properties="clr-namespace:GeometrySteps.Properties"
+        xmlns:views="clr-namespace:GeometrySteps.Views"
+        xmlns:viewModels="clr-namespace:GeometrySteps.ViewModels"
+        mc:Ignorable="d"
+        d:DataContext="{d:DesignInstance viewModels:NavigationViewModel}"
+        Title="MainWindow" 
+        Height="800" Width="700" WindowState="Normal"
+        ResizeMode="NoResize"
+        Style="{DynamicResource BaseWindowStyle}">
+    <Window.Resources>
+        <ResourceDictionary>
+            <DataTemplate x:Key="FirstStepTemplate">
+                <views:FirstStep />
+            </DataTemplate>
+            <DataTemplate x:Key="SecondStepTemplate">
+                <views:SecondStep />
+            </DataTemplate>
+            <DataTemplate x:Key="ThirdStepTemplate">
+                <views:ThirdStep />
+            </DataTemplate>
+            <DataTemplate x:Key="SuccessTemplate">
+                <views:FinalizationStepSuccess />
+            </DataTemplate>
+            <DataTemplate x:Key="FailureTemplate">
+                <views:FinalizationStepFailure />
+            </DataTemplate>
+
+            <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+            <templateSelectors:WizardStepTemplateSelector x:Key="StepTemplateSelector"
+                                                          FirstStepTemplate="{StaticResource FirstStepTemplate}"
+                                                          SecondStepTemplate="{StaticResource SecondStepTemplate}"
+                                                          ThirdStepTemplate="{StaticResource ThirdStepTemplate}"
+                                                          SuccessTemplate="{StaticResource SuccessTemplate}"
+                                                          FailureTemplate="{StaticResource FailureTemplate}">
+
+            </templateSelectors:WizardStepTemplateSelector>
+
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles/Styles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <Grid SnapsToDevicePixels="True">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="66"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Border Background="{StaticResource HeaderBG}" BorderThickness="0" Padding="28,17,0,0">
+            <TextBlock FontFamily="Segoe UI" FontSize="24px" Foreground="White" Text="{x:Static properties:Resources.CommonTitle}"></TextBlock>
+        </Border>
+        <Border Padding="28,0,28,0" Grid.Row="1">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="56"/>
+                </Grid.RowDefinitions>
+                <ContentPresenter Content="{Binding CurrentStepContext}" ContentTemplateSelector="{StaticResource StepTemplateSelector}" Grid.Row="0"/>
+                <Grid Grid.Row="1" VerticalAlignment="Top">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1.1*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0" Orientation="Horizontal">
+                        <Button Margin="0,0,20,0" AutomationProperties.AutomationId="Cancel" Command="{Binding CancelCommand}" Visibility="{Binding Path=CurrentStepContext.IsCancelVisible, Converter={StaticResource BooleanToVisibilityConverter}}" Style="{StaticResource MetroButton}" Width="100" HorizontalAlignment="Left" Content="{x:Static properties:Resources.Button_Cancel}"/>
+                        <Button Margin="0,0,20,0" AutomationProperties.AutomationId="Close" Visibility="{Binding CurrentStepContext.IsCloseVisible, Converter={StaticResource BooleanToVisibilityConverter}}" Style="{StaticResource MetroButton}" Command="{Binding CloseCommand}" Width="100" HorizontalAlignment="Left" Content="{x:Static properties:Resources.Button_Close}"/>
+                        <Button Margin="0,0,20,0" AutomationProperties.AutomationId="Back" Visibility="{Binding CurrentStepContext.IsBackVisible, Converter={StaticResource BooleanToVisibilityConverter}}" Style="{StaticResource MetroButton}" Command="{Binding MoveBackCommand}" Width="100" HorizontalAlignment="Right" Content="{x:Static properties:Resources.Button_Back}"/>
+                    </StackPanel>
+                    <Grid Grid.Column="1">
+                        <Button AutomationProperties.AutomationId="Next" Visibility="{Binding CurrentStepContext.IsNextVisible, Converter={StaticResource BooleanToVisibilityConverter}}" Style="{StaticResource MetroButton}" Command="{Binding MoveNextCommand}" Width="100" HorizontalAlignment="Right"  Content="{x:Static properties:Resources.Button_Next}"/>
+                        <Button AutomationProperties.AutomationId="Ready" Visibility="{Binding CurrentStepContext.IsReadyVisible, Converter={StaticResource BooleanToVisibilityConverter}}" Style="{StaticResource MetroButton}" Command="{Binding FinishCommand}" Width="100" HorizontalAlignment="Right"  Content="{x:Static properties:Resources.Button_Ready}"/>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>
