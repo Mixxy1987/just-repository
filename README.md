@@ -1,5 +1,5 @@
 # just-repository
-1) GeometrySteps
+1) WizardStepsExample
 
 simple wizard steps project based on mvvm <br />
 init -> next -> back -> next -> next -> close :) <br />
