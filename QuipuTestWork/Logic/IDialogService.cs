@@ -5,6 +5,10 @@
     /// </summary>
     public interface IDialogService
     {
-        string OpenFileDialog(string path);  // открытие файла
+        /// <summary>
+        /// Диалог открытия файла.
+        /// </summary>
+        /// <returns>Путь к файлу.</returns>
+        string OpenFileDialog();  // открытие файла
     }
 }

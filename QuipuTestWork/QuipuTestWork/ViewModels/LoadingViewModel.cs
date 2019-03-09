@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -152,8 +151,7 @@ namespace QuipuTestWork.ViewModels
         /// </summary>
         private void SelectFolder()
         {
-            PathToFile = _dialogService.OpenFileDialog(
-                _directoryService.GetSpecialDirectory(Environment.SpecialFolder.MyDocuments));
+            PathToFile = _dialogService.OpenFileDialog();
         }
 
         /// <summary>
@@ -166,7 +164,7 @@ namespace QuipuTestWork.ViewModels
             {
                 CanStart = false;
                 CanCancel = false;
-                throw new NotSupportedException();
+                if (!string.IsNullOrEmpty(path)) throw new NotSupportedException();
             }
             CanStart = true;
             CanCancel = false;

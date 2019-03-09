@@ -5,7 +5,8 @@ namespace Logic
     /// <inheritdoc />
     public class DialogService : IDialogService
     {
-        public string OpenFileDialog(string path)
+        /// <inheritdoc />
+        public string OpenFileDialog()
         {
             VistaOpenFileDialog dlg = new VistaOpenFileDialog();
             return dlg.ShowDialog() == true ? dlg.FileName : string.Empty;
