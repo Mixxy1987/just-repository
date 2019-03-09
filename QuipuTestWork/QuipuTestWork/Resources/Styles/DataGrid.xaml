@@ -1,0 +1,19 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:QuipuTestWork.Resources.Styles">
+    <Style TargetType="{x:Type DataGrid}" x:Key="UserDataGrid">
+        <Setter Property="GridLinesVisibility" Value="All"/>
+        <Setter Property="HorizontalGridLinesBrush" Value="Silver"/>
+        <Setter Property="VerticalGridLinesBrush" Value="Silver"/>
+        <Setter Property="HorizontalScrollBarVisibility" Value="Hidden"/>
+        <Setter Property="HeadersVisibility" Value="Column"/>
+        <Setter Property="CanUserAddRows" Value="False"/>
+        <Setter Property="CanUserReorderColumns" Value="False"/>
+        <Setter Property="CanUserResizeColumns" Value="False"/>
+        <Setter Property="CanUserDeleteRows" Value="False"/>
+        <Setter Property="AutoGenerateColumns" Value="False"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Width" Value="Auto"/>
+        <Setter Property="Background" Value="Transparent"/>
+    </Style>
+</ResourceDictionary>

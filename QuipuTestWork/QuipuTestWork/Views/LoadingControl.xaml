@@ -1,0 +1,113 @@
+﻿<UserControl x:Class="QuipuTestWork.Views.LoadingControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:properties="clr-namespace:QuipuTestWork.Properties"
+             mc:Ignorable="d" 
+             x:Name="this"
+             d:DesignHeight="800"
+             d:DesignWidth="500"
+             >
+    <Grid DataContext="{Binding ElementName=this, Path=ViewModel}">
+        <Grid.Resources>
+            <ResourceDictionary>
+                <ResourceDictionary.MergedDictionaries>
+                    <ResourceDictionary Source="/QuipuTestWork;component/Resources/Styles.xaml"/>
+                </ResourceDictionary.MergedDictionaries>
+            </ResourceDictionary>
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Vertical">
+            <TextBlock Style="{StaticResource SimpleText}"
+                       Margin="{StaticResource TenPixelLeftMargin}"
+                       Text="{x:Static properties:Resources.Label_SetPathToFile}"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="30"/>
+                </Grid.ColumnDefinitions>
+                <Border Height="40" Grid.Column="0">
+                    <TextBox 
+                        VerticalAlignment="Top"
+                        Style="{StaticResource DataTextStyle}"
+                        Padding="10,0,0,0"
+                        IsEnabled="{Binding CanChooseFolder}"
+                        Text="{Binding PathToFile, Mode=TwoWay,
+                        UpdateSourceTrigger=PropertyChanged,
+                        ValidatesOnExceptions=True}"/>
+                </Border>
+                <Button VerticalAlignment="Top"
+                        IsEnabled="{Binding CanChooseFolder}"
+                        Command="{Binding SelectFolderCommand}"
+                        Style="{StaticResource MetroButton}" Grid.Column="2">
+                    ...
+                </Button>
+            </Grid>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Height="30"
+                        IsEnabled="{Binding CanStart}"
+                        Command="{Binding LoadCommand}"
+                        Content="{x:Static properties:Resources.Button_Start}"/>
+                <Button Grid.Column="1" Height="30"
+                        IsEnabled="{Binding CanCancel}"
+                        Command="{Binding CancelCommand}"
+                        Content="{x:Static properties:Resources.Button_Cancel}"/>
+            </Grid>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0"
+                           Style="{StaticResource SimpleText}"
+                           Margin="{StaticResource TenPixelLeftMargin}"
+                           Text="{x:Static properties:Resources.Label_CurrentLink}"/>
+                <TextBlock Grid.Column="1"
+                           Style="{StaticResource SimpleText}"
+                           Margin="{StaticResource TenPixelLeftMargin}"
+                           Text="{Binding Current.SetupStateProgress.Message}"/>
+            </Grid>
+            <Grid>
+                <ProgressBar x:Name="progressBar"
+                             Value="{Binding Current.SetupStateProgress.Percent}"
+                             Style="{StaticResource BaseProgressBarStyle}"/>
+                <TextBlock Text="{Binding Current.SetupStateProgress.Percent, StringFormat={}{0:0}%}" 
+                       HorizontalAlignment="Center" 
+                       VerticalAlignment="Center" />
+            </Grid>
+        </StackPanel>
+        <DataGrid Grid.Row="1"
+            VerticalScrollBarVisibility="Visible"
+                  Style="{StaticResource UserDataGrid}"
+                  ItemsSource="{Binding LinksResults}">
+            <DataGrid.Columns>
+                <DataGridTextColumn 
+                    Width="0.3*"
+                    Binding="{Binding Url}"
+                    Header="{x:Static properties:Resources.DataGrid_Url}"/>
+                <DataGridTextColumn 
+                    Width="0.1*"
+                    Binding="{Binding Count}"
+                    Header="{x:Static properties:Resources.DataGrid_Count}"/>
+                <DataGridTextColumn 
+                    Width="0.6*"
+                    Binding="{Binding Message}"
+                    Header="{x:Static properties:Resources.DataGrid_Message}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Grid.Row="2" Height="30"
+                Command="{Binding ExitCommand}"
+                Content="{x:Static properties:Resources.Button_Exit}"/>
+    </Grid>
+</UserControl>
