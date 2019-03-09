@@ -12,7 +12,7 @@ namespace QuipuTestWork.Common
         void Load(
             IList<string> fileContent,
             IUiContext context,
-            ObservableCollection<LinkResult> linkResults,
+            CustomObsCollection<LinkResult> linkResults,
             CancellationToken token, IProgress<SetupStateProgress> progress);
     }
 }

@@ -7,8 +7,7 @@
              mc:Ignorable="d" 
              x:Name="this"
              d:DesignHeight="800"
-             d:DesignWidth="500"
-             >
+             d:DesignWidth="500">
     <Grid DataContext="{Binding ElementName=this, Path=ViewModel}">
         <Grid.Resources>
             <ResourceDictionary>
@@ -88,9 +87,23 @@
             </Grid>
         </StackPanel>
         <DataGrid Grid.Row="1"
-            VerticalScrollBarVisibility="Visible"
+                  VerticalScrollBarVisibility="Visible"
                   Style="{StaticResource UserDataGrid}"
                   ItemsSource="{Binding LinksResults}">
+            <DataGrid.RowStyle>
+                <Style TargetType="DataGridRow">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Max}" Value="true">
+                            <Setter Property="FontSize" Value="20"></Setter>
+                            <Setter Property="FontWeight" Value="Bold"></Setter>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Max}" Value="false">
+                            <Setter Property="FontSize" Value="14"></Setter>
+                            <Setter Property="FontWeight" Value="Normal"></Setter>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.RowStyle>
             <DataGrid.Columns>
                 <DataGridTextColumn 
                     Width="0.3*"

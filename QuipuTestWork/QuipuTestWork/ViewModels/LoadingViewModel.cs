@@ -29,7 +29,7 @@ namespace QuipuTestWork.ViewModels
         private readonly IDialogService _dialogService;
         private readonly IWebLoader _webLoader;
         private string _pathToFile;
-        private ObservableCollection<LinkResult> _linksResults;
+        private CustomObsCollection<LinkResult> _linksResults;
 
         public ICommand CancelCommand
         {
@@ -97,7 +97,7 @@ namespace QuipuTestWork.ViewModels
 
         public IWebLoader WebLoader { get; set; }
 
-        public ObservableCollection<LinkResult> LinksResults
+        public CustomObsCollection<LinkResult> LinksResults
         {
             get => _linksResults;
             set
@@ -135,7 +135,7 @@ namespace QuipuTestWork.ViewModels
         public async Task StartLoading(object parameter, CancellationToken token)
         {
             WebLoader = _webLoader;
-            LinksResults = new ObservableCollection<LinkResult>();
+            LinksResults = new CustomObsCollection<LinkResult>();
             IUiContext context = new UiContext(Dispatcher.CurrentDispatcher);
             IList<string> fileContent = _directoryService.ReadFileContent(_pathToFile).ToList();
             CanCancel = true;
